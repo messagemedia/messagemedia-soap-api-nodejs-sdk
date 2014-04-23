@@ -1,0 +1,16 @@
+{
+  "name": "mm-nodejs-sample",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+	"ws.js": "0.0.19",
+    "elementtree": "^0.1.6",
+    "underscore": "1.6.0",
+    "nodeunit": "0.8.6",
+    "express": "3.2.6",
+    "jade": "*"
+  }
+}
