@@ -35,7 +35,7 @@ This sample uses the Express web application framework package, which was create
 
 The code snippet below shows how a very simple REST interface could be made to access MessageMedia's SOAP API via this library.
 ```javascript
-var messagemedia = require('../index.js');
+var messagemedia = require('messagemedia');
 
 app.post('/api/checkUser', function(req, res){
   messagemedia.checkUser(req.body.userId, req.body.password, function(result){
