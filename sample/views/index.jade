@@ -71,8 +71,8 @@ block content
 							h3 Messages:
 							div(class="radio")
 								label
-									input(type="radio" name="operationRadios" value="sendMessage" ng-model="selectedOperation" disabled) 
-									| sendMessages (TODO)
+									input(type="radio" name="operationRadios" value="sendMessage" ng-model="selectedOperation") 
+									| sendMessages
 							div(class="radio")
 								label
 									input(type="radio" name="operationRadios" value="deleteScheduledMessages" ng-model="selectedOperation" disabled)
@@ -86,12 +86,12 @@ block content
 								div(class="form-group")
 									label(class="col col-sm-6 control-label") maximumReplies:
 									div(class="col col-md-6")
-										input(type="number" class="form-control" ng-model="apiRequest.maximumReplies" placeholder="maximumReplies" disabled)
+										input(type="number" class="form-control" ng-model="apiRequest.maximumReplies" placeholder="maximumReplies")
 							div(ng-if="selectedOperation=='checkReports'" ng-init="resetRequest();")
 								div(class="form-group")
 									label(class="col col-sm-6 control-label") maximumReports:
 									div(class="col col-md-6")
-										input(type="number" class="form-control" ng-model="apiRequest.maximumReports" placeholder="maximumReports" disabled)
+										input(type="number" class="form-control" ng-model="apiRequest.maximumReports" placeholder="maximumReports")
 								
 							div(ng-if="selectedOperation=='getBlockedNumbers'" ng-init="resetRequest();")
 								div(class="form-group")
@@ -132,6 +132,9 @@ block content
 								button(ng-click="apiRequest.numbers.push(number); number=''" ng-disabled="!number.length") Add
 								input(type="text" ng-model="number")
 								pre(ng-repeat="num in apiRequest.numbers" ng-click="apiRequest.numbers.splice($index,1)") {{num}}
+								br
+								strong Message content:
+								textarea(ng-model="apiRequest.content" style="width:100%")
 								
 							div(ng-if="selectedOperation=='deleteScheduledMessages'" ng-init="resetRequest();")
 								p No additional information to enter.
