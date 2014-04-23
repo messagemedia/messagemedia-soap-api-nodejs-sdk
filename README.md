@@ -27,12 +27,17 @@ npm install
 * **/node_modules** Is created after running **npm install**.
 
 ## Sample:
+
+To run the sample web application type the following command:
+
+```node sample/app.js```
+
 In **/sample** there is a sample web application that can be used to test/demonstrate the library. 
 This sample has two major parts.
 * **Server** (NodeJS)
 * **Client** (AngularJS)
 
-This sample uses the Express web application framework package, which was created using NodeJS. 
+This sample uses the Express web application framework package, which was created using NodeJS.
 
 The code snippet below shows how a very simple REST interface could be made to access MessageMedia's SOAP API via this library.
 ```javascript
