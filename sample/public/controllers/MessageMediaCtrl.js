@@ -1,11 +1,45 @@
+angular.module('messageMedia', []);
+
 function MessageMediaCtrl($scope, $http, $window) {
   
   // Initialise scope
   $scope.showDebug = true;
   $scope.selectedOperation = 'checkUser';
   $scope.loading = false;
-  $scope.apiRequest = {};
+  $scope.apiRequest = {userId:"", password:""};
   $scope.apiResponse = {};
+  
+  if(sessionStorage.rememberAuth == 'true'){
+	  $scope.apiRequest.userId = sessionStorage.userId;
+	  $scope.apiRequest.password = sessionStorage.password;
+	  $scope.rememberAuth = true;
+  }
+  
+  $scope.$watch('apiRequest.userId', function(){
+	  if(!sessionStorage.rememberAuth){
+		  return;
+	  }
+	  sessionStorage.userId = $scope.apiRequest.userId;
+  });
+  
+  $scope.$watch('apiRequest.password', function(){
+	  if(!sessionStorage.rememberAuth){
+		  return;
+	  }
+	  sessionStorage.password = $scope.apiRequest.password;
+  });
+  
+  $scope.resetAuth = function(){
+	  if(!$scope.rememberAuth){
+		  sessionStorage.userId = "";
+		  sessionStorage.password = "";
+		  sessionStorage.rememberAuth = false;
+	  }else{
+		  sessionStorage.userId = $scope.apiRequest.userId;
+		  sessionStorage.password = $scope.apiRequest.password;
+		  sessionStorage.rememberAuth = true;
+	  }
+  }
 
   $scope.submit = function(){
     $scope.loading = true;

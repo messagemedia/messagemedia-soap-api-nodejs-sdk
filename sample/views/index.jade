@@ -5,10 +5,10 @@ block content
 	p Welcome to #{title}
 	hr
 
-	div(class="row" ng-controller="MessageMediaCtrl")			
+	div(class="row" ng-controller="MessageMediaCtrl")
 		form(class="form-horizontal col col-md-5 well" role="form")
 			div(class="well" style="background-color:#EEE")
-				button(class="pull-right" ng-click="submit()" ng-disabled="false") 
+				button(class="pull-right" ng-click="submit()" ng-disabled="false")
 					strong Submit
 				h2 Authentication
 				div(class="form-group")
@@ -19,6 +19,10 @@ block content
 					label(class="col col-sm-2 control-label") password
 					div(class="col col-md-6")
 						input(type="password" class="form-control" ng-model="apiRequest.password" placeholder="password")
+				div(class="form-group")
+					label(class="col col-sm-2 control-label") Remember?
+					div(class="col col-md-6")
+						input(type="checkbox" ng-model="rememberAuth" ng-change="resetAuth()")
 								
 				hr
 				
@@ -57,12 +61,12 @@ block content
 							h3 Confirmations:
 							div(class="radio")
 								label
-									input(type="radio" name="operationRadios" value="confirmReplies" ng-model="selectedOperation" disabled) 
-									| confirmReplies (TODO)
+									input(type="radio" name="operationRadios" value="confirmReplies" ng-model="selectedOperation") 
+									| confirmReplies
 							div(class="radio")
 								label
-									input(type="radio" name="operationRadios" value="confirmReports" ng-model="selectedOperation" disabled)
-									| confirmReports (TODO)
+									input(type="radio" name="operationRadios" value="confirmReports" ng-model="selectedOperation")
+									| confirmReports
 									
 							h3 Messages:
 							div(class="radio")
@@ -108,10 +112,19 @@ block content
 								input(type="text" ng-model="number")
 								pre(ng-repeat="num in apiRequest.numbers" ng-click="apiRequest.numbers.splice($index,1)") {{num}}
 								
-							div(ng-if="selectedOperation=='confirmReplies'" ng-init="resetRequest();")
-								p No additional information to enter.
-							div(ng-if="selectedOperation=='confirmReports'" ng-init="resetRequest();")
-								p No additional information to enter.
+							div(ng-if="selectedOperation=='confirmReplies'" ng-init="number=''; resetRequest(); apiRequest.replies=[];")
+								strong ReceiptIds:
+								br
+								button(ng-click="apiRequest.replies.push({receiptId:number})" ng-disabled="!number.length") Add
+								input(type="text" ng-model="number")
+								pre(ng-repeat="num in apiRequest.replies" ng-click="apiRequest.replies.splice($index,1)") {{num}}
+								
+							div(ng-if="selectedOperation=='confirmReports'" ng-init="number=''; resetRequest(); apiRequest.reports=[];")
+								strong ReceiptIds:
+								br
+								button(ng-click="apiRequest.reports.push({receiptId:number})" ng-disabled="!number.length") Add
+								input(type="text" ng-model="number")
+								pre(ng-repeat="num in apiRequest.reports" ng-click="apiRequest.reports.splice($index,1)") {{num}}
 								
 							div(ng-if="selectedOperation=='sendMessage'" ng-init="number=''; resetRequest(); apiRequest.numbers=[];")
 								strong Numbers:
