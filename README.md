@@ -31,6 +31,7 @@ In **/sample** there is a sample web application that can be used to test/demons
 This sample has two major parts.
 * **Server** (NodeJS)
 * **Client** (AngularJS)
+
 This sample uses the Express web application framework package, which was created using NodeJS. 
 
 The code snippet below shows how a very simple REST interface could be made to access MessageMedia's SOAP API via this library.
