@@ -20,11 +20,19 @@ Create a **package.json** file in the project's root directory and add **message
 ```
 npm install
 ```
-## Project file & directory structure:
+## Project directory structure:
 * **/lib** MessageMedia library. 
 * **/test** Contains test scripts called from **/test/tests.js**.
 * **/sample** Contains a sample application.
 * **/node_modules** Is created after running **npm install**.
+
+### This project was created using an IDE: 
+
+IDE: Eclipse Standard 
+
+Version: Kepler Service Release 2.
+
+You must install http://www.nodeclipse.org/ into Eclipse.
 
 ## Sample:
 
