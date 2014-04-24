@@ -75,8 +75,8 @@ block content
 									| sendMessages
 							div(class="radio")
 								label
-									input(type="radio" name="operationRadios" value="deleteScheduledMessages" ng-model="selectedOperation" disabled)
-									| deleteScheduledMessages (TODO)
+									input(type="radio" name="operationRadios" value="deleteScheduledMessages" ng-model="selectedOperation")
+									| deleteScheduledMessages
 					
 					div(class="col col-md-6")
 						div(class="well" style="background-color:#E7E7E7")
@@ -136,8 +136,12 @@ block content
 								strong Message content:
 								textarea(ng-model="apiRequest.content" style="width:100%")
 								
-							div(ng-if="selectedOperation=='deleteScheduledMessages'" ng-init="resetRequest();")
-								p No additional information to enter.
+							div(ng-if="selectedOperation=='deleteScheduledMessages'" ng-init="number=''; resetRequest(); apiRequest.messages=[];")
+								strong MessageIds:
+								br
+								button(ng-click="apiRequest.messages.push({messageId:number}); number='';" ng-disabled="!number.length") Add
+								input(type="text" ng-model="number")
+								pre(ng-repeat="num in apiRequest.messages" ng-click="apiRequest.messages.splice($index,1)") {{num}}
 				
 		div(class="col col-md-7" ng-style="{opacity:loading?0.5:1.0}")
 			div(class="text-center" ng-if="loading")
