@@ -6,22 +6,22 @@ block content
 	hr
 
 	div(class="row" ng-controller="MessageMediaCtrl")
-		form(class="form-horizontal col col-md-5 well" role="form")
+		form(class="form-horizontal col col-md-6 well" role="form")
 			div(class="well" style="background-color:#EEE")
 				button(class="pull-right" ng-click="submit()" ng-disabled="false")
 					strong Submit
 				h2 Authentication
 				div(class="form-group")
-					label(class="col col-sm-2 control-label") userId
+					label(class="col col-sm-3 control-label") userId
 					div(class="col col-md-6")
 						input(type="text" class="form-control" ng-model="apiRequest.userId" placeholder="userId")
 				div(class="form-group")
-					label(class="col col-sm-2 control-label") password
+					label(class="col col-sm-3 control-label") password
 					div(class="col col-md-6")
 						input(type="password" class="form-control" ng-model="apiRequest.password" placeholder="password")
 				div(class="form-group")
-					label(class="col col-sm-2 control-label") Remember?
-					div(class="col col-md-6")
+					label(class="col col-sm-3 control-label") Remember?
+					div(class="col col-sm-9")
 						input(type="checkbox" ng-model="rememberAuth" ng-change="resetAuth()")
 								
 				hr
@@ -146,7 +146,7 @@ block content
 								input(type="text" ng-model="number")
 								pre(ng-repeat="num in apiRequest.messages" ng-click="apiRequest.messages.splice($index,1)") {{num}}
 				
-		div(class="col col-md-7" ng-style="{opacity:loading?0.5:1.0}")
+		div(class="col col-md-6" ng-style="{opacity:loading?0.5:1.0}")
 			div(class="text-center" ng-if="loading")
 				img(src="img/loading-icon.gif" width="100px" style="position:absolute")
 			div(class="well")
