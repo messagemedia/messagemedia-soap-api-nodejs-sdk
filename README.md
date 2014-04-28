@@ -35,20 +35,33 @@ IDE: Eclipse Standard
 
 Version: Kepler Service Release 2.
 
-You must install http://www.nodeclipse.org/ into Eclipse.
+It is suggested that you install http://www.nodeclipse.org/ into Eclipse. This plugin allows you to interact with NodeJS from within Eclipse.
 
-## Sample:
+You do not need Eclipse or any IDE to use this library. You can get started with as little has 4 lines of code...
+
+```javascript
+// app.js
+const mm = require('messagemedia');
+mm.checkUser('userId', 'password', function(resp){
+	console.log(resp);
+});
+```
+
+## Sample REST based Web App:
 
 To run the sample web application type the following command:
 
 ```node sample/app.js```
 
 In **/sample** there is a sample web application that can be used to test/demonstrate the library. 
-This sample has two major parts.
+
+### Major Parts:
 * **Server** (NodeJS)
 * **Client** (AngularJS)
 
 This sample uses the Express web application framework package, which was created using NodeJS.
+
+The server (NodeJS) hosts a http server which serves a single-page for a web browser to access and a REST service. The REST service acts as a translation layer allowing two-way communication between MessageMedia's WSDL based SOAP API and this NodeJS's JSON based REST API. We have chosen to use AngularJS on the client (browser) because it is feature-rich and allows easy access to REST resources on the server.
 
 The code snippet below shows how a very simple REST interface could be made to access MessageMedia's SOAP API via this library.
 ```javascript
