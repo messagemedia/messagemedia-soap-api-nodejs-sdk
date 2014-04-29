@@ -11,16 +11,35 @@ var deleteScheduledMessages = require('./test__delete_scheduled_messages.js');
 var getBlockedNumbers = require('./test__get_blocked_numbers.js');
 var unblockNumbers = require('./test__unblock_numbers.js');
 
-/* 
- * PRE UNIT TESTS INITIALISATION
- * TODO:
- *  Clear all blocked recipients.
- */
-
-/*
- * THE UNIT TESTS
- */
 module.exports = testCase({
+  "Initialisation" : testCase(function(test)
+  /*
+   * PRE UNIT TESTS INITIALISATION Clear all blocked numbers.
+   */
+  {
+    var config = require('../test/config.json');
+    require("../lib/get_blocked_numbers/get_blocked_numbers.js")
+        .getBlockedNumbers(
+            config.userId,
+            config.password,
+            100,
+            function(blockedNumbers) {
+              if (blockedNumbers.returned !== 0) {
+                var numbers = [];
+
+                blockedNumbers.recipients.forEach(function(recipient) {
+                  numbers.push(recipient.number);
+                });
+
+                require("../lib/unblock_numbers/unblock_numbers.js")
+                    .unblockNumbers(config.userId, config.password, numbers,
+                        function(numbersUnblocked) {
+
+                        });
+              }
+            });
+    test.done();
+  }),
   "TC 1" : testCase({
     "TC 1.1" : function(test) {
       checkUser.t1(test, function(result) {
