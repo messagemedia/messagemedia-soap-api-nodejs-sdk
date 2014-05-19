@@ -4,5 +4,5 @@
  */
 
 exports.index = function(req, res){
-  res.render('index', { title: 'MessageMedia NodeJS Sample' });
+  res.render('index', { title: 'MessageMedia\'s NodeJS Sample' });
 };
