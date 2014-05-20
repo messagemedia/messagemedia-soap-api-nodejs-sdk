@@ -77,7 +77,7 @@ app.post('/api/checkUser', function(req, res){
 ## Unit Tests:
 When attempting to run **/tests.js** for the first time you must...
 
-* Create a **config.json** file in project root directory (use the **config.template.json** file as an example)
+* Create a **config.json** file in project root directory (use the **config.template.json** file as a template)
 * Run ```npm install nodeunit -g```
 * In ```/test``` execute ```nodeunit tests.js```
 
