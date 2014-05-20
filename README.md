@@ -23,7 +23,7 @@ $ npm install
 * **/lib** MessageMedia library.
 * **/test** Contains test scripts called from **/test/tests.js**.
 * **/sample** Contains a sample application.
-* **/node_modules** Is created after running **npm install**.
+* **/node_modules** Is created after running **$ npm install**.
 
 ### This project was created using an IDE:
 
@@ -78,8 +78,8 @@ app.post('/api/checkUser', function(req, res){
 When attempting to run **/tests.js** for the first time you must...
 
 * Create a **config.json** file in project root directory (use the **config.template.json** file as a template)
-* Run ```npm install nodeunit -g```
-* In ```/test``` execute ```nodeunit tests.js```
+* Run ```$ npm install nodeunit -g```
+* In ```/test``` execute ```$ nodeunit tests.js```
 
 * **TC 1:** Checking
 	* **TC 1.1:** Check User. 
