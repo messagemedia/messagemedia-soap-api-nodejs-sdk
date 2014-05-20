@@ -57,6 +57,8 @@ To run the sample web application type the following command:
 
 In **/sample** there is a sample web application that can be used to test/demonstrate the library. 
 
+In your web-browser go to [http://localhost:3000/](http://localhost:3000/)
+
 ### Major Parts:
 * **Server** (NodeJS)
 * **Client** (AngularJS)
