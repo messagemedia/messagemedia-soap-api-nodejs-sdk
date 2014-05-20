@@ -1,37 +1,33 @@
 # MessageMedia NodeJS Library
 A library that allows NodeJS programmers to access MessageMedia's SOAP API.
 
-## How to get this library:
-
+## How to get this library for your application:
+Clone the repository into your application's *node_modules* directory.
 ```
-$ cd node_modules
-
 $ git clone https://github.com/messagemedia/messagemedia-nodejs.git messagemedia
 ```
 **OR**
 
-**A package has not yet been created on npm...**
-
 Install it as a package from **npm** (Node Package Manager).
 ```
-npm install messagemedia
+$ npm install messagemedia
 ```
 
 **OR**
 
 Create a **package.json** file in the project's root directory and add **messagemedia** as a dependency. You can refer to the one in this project's root directory. After this file is created you can run the following command...
 ```
-npm install
+$ npm install
 ```
 ## Project directory structure:
-* **/lib** MessageMedia library. 
+* **/lib** MessageMedia library.
 * **/test** Contains test scripts called from **/test/tests.js**.
 * **/sample** Contains a sample application.
 * **/node_modules** Is created after running **npm install**.
 
-### This project was created using an IDE: 
+### This project was created using an IDE:
 
-IDE: Eclipse Standard 
+IDE: Eclipse Standard
 
 Version: Kepler Service Release 2.
 
