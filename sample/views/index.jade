@@ -82,12 +82,14 @@ block content
 						div(class="well" style="background-color:#E7E7E7")
 							div(ng-if="selectedOperation=='checkUser'" ng-init="resetRequest();")
 								p checkUser has no additional information to enter.
+								
 							div(ng-if="selectedOperation=='checkReplies'" ng-init="resetRequest();")
 								div(class="form-group")
 									label(class="col col-sm-6 control-label") maximumReplies:
 									div(class="col col-md-6")
 										input(type="number" min="1" class="form-control" ng-model="apiRequest.maximumReplies" placeholder="")
 										button(ng-click="apiRequest.maximumReplies = null") Clear
+										
 							div(ng-if="selectedOperation=='checkReports'" ng-init="resetRequest();")
 								div(class="form-group")
 									label(class="col col-sm-6 control-label") maximumReports:
@@ -101,6 +103,7 @@ block content
 									div(class="col col-md-6")
 										input(type="number" min="1" class="form-control" ng-model="apiRequest.maximumNumbers" placeholder="")
 										button(ng-click="apiRequest.maximumNumbers = null") Clear
+										
 							div(ng-if="selectedOperation=='blockNumbers'" ng-init="number=''; resetRequest(); apiRequest.numbers=[];")
 								strong Numbers to block:
 								br
