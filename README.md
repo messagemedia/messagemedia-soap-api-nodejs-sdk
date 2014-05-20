@@ -61,7 +61,7 @@ In **/sample** there is a sample web application that can be used to test/demons
 
 This sample uses the Express web application framework package, which was created using NodeJS.
 
-The server (NodeJS) hosts a http server which serves a single-page for a web browser to access and a REST service. The REST service acts as a translation layer allowing two-way communication between MessageMedia's WSDL based SOAP API and this NodeJS's JSON based REST API. We have chosen to use AngularJS on the client (browser) because it is feature-rich and allows easy access to REST resources on the server.
+The server (NodeJS) hosts a http server which serves a single-page for a web browser to access and a REST service. The REST service acts as a translation layer allowing two-way communication between MessageMedia's WSDL based SOAP API and this NodeJS's JSON based REST API. I have chosen to use AngularJS on the client (browser) because it is feature-rich and allows easy access to REST resources on the server.
 
 The code snippet below shows how a very simple REST interface could be made to access MessageMedia's SOAP API via this library.
 ```javascript

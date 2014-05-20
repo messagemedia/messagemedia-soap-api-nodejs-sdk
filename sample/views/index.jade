@@ -80,7 +80,7 @@ block content
 					
 					div(class="col col-md-6")
 						div(class="well" style="background-color:#E7E7E7")
-							div(ng-if="selectedOperation=='checkUser'")
+							div(ng-if="selectedOperation=='checkUser'" ng-init="resetRequest();")
 								p checkUser has no additional information to enter.
 							div(ng-if="selectedOperation=='checkReplies'" ng-init="resetRequest();")
 								div(class="form-group")
