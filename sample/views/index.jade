@@ -1,172 +1,188 @@
 extends layout
 
 block content
-	h1= title
-	p Welcome to #{title}
-	hr
+    h1= title
+    p Welcome to #{title}
+    hr
 
-	div(class="row" ng-controller="MessageMediaCtrl")
-		form(class="form-horizontal col col-md-6 well css-form" role="form" name="form")
-			div(class="well" style="background-color:#EEE")
-				button(class="pull-right" ng-click="submit()" ng-disabled="form.$invalid")
-					strong Submit
-				h2 Authentication
-				div(class="form-group")
-					label(class="col col-sm-3 control-label") userId
-					div(class="col col-md-6")
-						input(type="text" class="form-control" ng-model="apiRequest.userId" placeholder="userId" required)
-				div(class="form-group")
-					label(class="col col-sm-3 control-label") password
-					div(class="col col-md-6")
-						input(type="password" class="form-control" ng-model="apiRequest.password" placeholder="password" required)
-				div(class="form-group")
-					label(class="col col-sm-3 control-label") Remember?
-					div(class="col col-sm-9")
-						input(type="checkbox" ng-model="rememberAuth" ng-change="resetAuth()" ng-disabled="form.$invalid")
-								
-				hr
-				
-				h2 Operations
-				div(class="row")
-					div(class="col col-md-6")
-						div(class="well" style="background-color:#E7E7E7")
-							h3 Checks:
-							div(class="radio")
-								label
-									input(type="radio" name="operationRadios" value="checkUser" ng-model="selectedOperation") 
-									| checkUser
-							div(class="radio")
-								label
-									input(type="radio" name="operationRadios" value="checkReplies" ng-model="selectedOperation")
-									| checkReplies
-							div(class="radio")
-								label
-									input(type="radio" name="operationRadios" value="checkReports" ng-model="selectedOperation")
-									| checkReports
-							
-							h3 Number Blocking:
-							div(class="radio")
-								label
-									input(type="radio" name="operationRadios" value="getBlockedNumbers" ng-model="selectedOperation") 
-									| getBlockedNumbers
-							div(class="radio")
-								label
-									input(type="radio" name="operationRadios" value="blockNumbers" ng-model="selectedOperation")
-									| blockNumbers
-							div(class="radio")
-								label
-									input(type="radio" name="operationRadios" value="unblockNumbers" ng-model="selectedOperation")
-									| unblockNumbers
-									
-							h3 Confirmations:
-							div(class="radio")
-								label
-									input(type="radio" name="operationRadios" value="confirmReplies" ng-model="selectedOperation") 
-									| confirmReplies
-							div(class="radio")
-								label
-									input(type="radio" name="operationRadios" value="confirmReports" ng-model="selectedOperation")
-									| confirmReports
-									
-							h3 Messages:
-							div(class="radio")
-								label
-									input(type="radio" name="operationRadios" value="sendMessage" ng-model="selectedOperation") 
-									| sendMessages
-							div(class="radio")
-								label
-									input(type="radio" name="operationRadios" value="deleteScheduledMessages" ng-model="selectedOperation")
-									| deleteScheduledMessages
-					
-					div(class="col col-md-6")
-						div(class="well" style="background-color:#E7E7E7")
-							div(ng-if="selectedOperation=='checkUser'" ng-init="resetRequest();")
-								p checkUser has no additional information to enter.
-								
-							div(ng-if="selectedOperation=='checkReplies'" ng-init="resetRequest();")
-								div(class="form-group")
-									label(class="col col-sm-6 control-label") maximumReplies:
-									div(class="col col-md-6")
-										input(type="number" min="1" class="form-control" ng-model="apiRequest.maximumReplies" placeholder="")
-										button(ng-click="apiRequest.maximumReplies = null") Clear
-										
-							div(ng-if="selectedOperation=='checkReports'" ng-init="resetRequest();")
-								div(class="form-group")
-									label(class="col col-sm-6 control-label") maximumReports:
-									div(class="col col-md-6")
-										input(type="number" min="1" class="form-control" ng-model="apiRequest.maximumReports" placeholder="")
-										button(ng-click="apiRequest.maximumReports = null") Clear
-								
-							div(ng-if="selectedOperation=='getBlockedNumbers'" ng-init="resetRequest();")
-								div(class="form-group")
-									label(class="col col-sm-6 control-label") maximumNumbers:
-									div(class="col col-md-6")
-										input(type="number" min="1" class="form-control" ng-model="apiRequest.maximumNumbers" placeholder="")
-										button(ng-click="apiRequest.maximumNumbers = null") Clear
-										
-							div(ng-if="selectedOperation=='blockNumbers'" ng-init="number=''; resetRequest(); apiRequest.numbers=[];")
-								strong Numbers to block:
-								br
-								button(ng-click="apiRequest.numbers.push(number)" ng-disabled="!number.length") Add
-								input(type="text" ng-model="number")
-								pre(ng-repeat="num in apiRequest.numbers" ng-click="apiRequest.numbers.splice($index,1)") {{num}}
-								
-							div(ng-if="selectedOperation=='unblockNumbers'" ng-init="number=''; resetRequest(); apiRequest.numbers=[];")
-								strong Numbers to unblock:
-								br
-								button(ng-click="apiRequest.numbers.push(number)" ng-disabled="!number.length") Add
-								input(type="text" ng-model="number")
-								pre(ng-repeat="num in apiRequest.numbers" ng-click="apiRequest.numbers.splice($index,1)") {{num}}
-								
-							div(ng-if="selectedOperation=='confirmReplies'" ng-init="number=''; resetRequest(); apiRequest.replies=[];")
-								strong ReceiptIds:
-								br
-								button(ng-click="apiRequest.replies.push({receiptId:number})" ng-disabled="!number.length") Add
-								input(type="text" ng-model="number")
-								pre(ng-repeat="num in apiRequest.replies" ng-click="apiRequest.replies.splice($index,1)") {{num}}
-								
-							div(ng-if="selectedOperation=='confirmReports'" ng-init="number=''; resetRequest(); apiRequest.reports=[];")
-								strong ReceiptIds:
-								br
-								button(ng-click="apiRequest.reports.push({receiptId:number})" ng-disabled="!number.length") Add
-								input(type="text" ng-model="number")
-								pre(ng-repeat="num in apiRequest.reports" ng-click="apiRequest.reports.splice($index,1)") {{num}}
-								
-							div(ng-if="selectedOperation=='sendMessage'" ng-init="number=''; resetRequest(); apiRequest.numbers=[];")
-								strong Numbers:
-								br
-								button(ng-click="apiRequest.numbers.push(number); number=''" ng-disabled="!number.length") Add
-								input(type="text" ng-model="number")
-								pre(ng-repeat="num in apiRequest.numbers" ng-click="apiRequest.numbers.splice($index,1)") {{num}}
-								br
-								strong Message content:
-								textarea(ng-model="apiRequest.content" style="width:100%")
-								
-							div(ng-if="selectedOperation=='deleteScheduledMessages'" ng-init="number=''; resetRequest(); apiRequest.messages=[];")
-								strong MessageIds:
-								br
-								button(ng-click="apiRequest.messages.push({messageId:number}); number='';" ng-disabled="!number.length") Add
-								input(type="text" ng-model="number")
-								pre(ng-repeat="num in apiRequest.messages" ng-click="apiRequest.messages.splice($index,1)") {{num}}
-				
-		div(class="col col-md-6" ng-style="{opacity:loading?0.5:1.0}")
-			div(class="text-center" ng-if="loading")
-				img(src="img/loading-icon.gif" width="100px" style="position:absolute")
-			div(class="well")
-				h2 Comms			
-				button(ng-show="!showDebug" ng-click="showDebug = true" ng-disabled="loading") Show Comms
-				button(ng-show="showDebug" ng-click="showDebug = false" ng-disabled="loading") Hide Comms			
-				div(ng-if="showDebug" class="row")
-					div(class="col col-md-6") 
-						h3 Request
-						div(class="well" style="background-color:#EEE")
-							h4 URI:
-							p(class="well" style="background-color:#E7E7E7") {{('/api/' + selectedOperation) || "Uninitialised"}}
-							h4 Body:
-							pre(class="well" style="background-color:#E7E7E7") {{(apiRequest | json) || "Uninitialised"}}
-					div(class="col col-md-6")
-						h3 Response
-						div(class="well" style="background-color:#EEE")
-							h4 Body:
-							pre(class="well" style="background-color:#E7E7E7") {{(apiResponse | json) || "Uninitialised"}}
-					
+    div(class="row" ng-controller="MessageMediaCtrl")
+        form(class="form-horizontal col col-md-6 well css-form" role="form" name="form")
+            div(class="well" style="background-color:#EEE")
+                button(class="pull-right" ng-click="submit()" ng-disabled="form.$invalid || loading")
+                    strong Submit
+                h2 Authentication
+                div(class="form-group")
+                    label(class="col col-sm-3 control-label") userId
+                    div(class="col col-md-6")
+                        input(type="text" class="form-control" ng-model="apiRequest.userId" placeholder="userId" required)
+                div(class="form-group")
+                    label(class="col col-sm-3 control-label") password
+                    div(class="col col-md-6")
+                        input(type="password" class="form-control" ng-model="apiRequest.password" placeholder="password" required)
+                div(class="form-group")
+                    label(class="col col-sm-3 control-label") Remember?
+                    div(class="col col-sm-9")
+                        input(type="checkbox" ng-model="rememberAuth" ng-change="resetAuth()" ng-disabled="form.$invalid")
+                                
+                hr
+                
+                h2 Operations
+                div(class="row")
+                    div(class="col col-md-6")
+                        div(class="well" style="background-color:#E7E7E7")
+                            h3 Checks:
+                            div(class="radio")
+                                label
+                                    input(type="radio" name="operationRadios" value="checkUser" ng-model="selectedOperation") 
+                                    | checkUser
+                            div(class="radio")
+                                label
+                                    input(type="radio" name="operationRadios" value="checkReplies" ng-model="selectedOperation")
+                                    | checkReplies
+                            div(class="radio")
+                                label
+                                    input(type="radio" name="operationRadios" value="checkReports" ng-model="selectedOperation")
+                                    | checkReports
+                            
+                            h3 Number Blocking:
+                            div(class="radio")
+                                label
+                                    input(type="radio" name="operationRadios" value="getBlockedNumbers" ng-model="selectedOperation") 
+                                    | getBlockedNumbers
+                            div(class="radio")
+                                label
+                                    input(type="radio" name="operationRadios" value="blockNumbers" ng-model="selectedOperation")
+                                    | blockNumbers
+                            div(class="radio")
+                                label
+                                    input(type="radio" name="operationRadios" value="unblockNumbers" ng-model="selectedOperation")
+                                    | unblockNumbers
+                                    
+                            h3 Confirmations:
+                            div(class="radio")
+                                label
+                                    input(type="radio" name="operationRadios" value="confirmReplies" ng-model="selectedOperation") 
+                                    | confirmReplies
+                            div(class="radio")
+                                label
+                                    input(type="radio" name="operationRadios" value="confirmReports" ng-model="selectedOperation")
+                                    | confirmReports
+                                    
+                            h3 Messages:
+                            div(class="radio")
+                                label
+                                    input(type="radio" name="operationRadios" value="sendMessage" ng-model="selectedOperation") 
+                                    | sendMessages
+                            div(class="radio")
+                                label
+                                    input(type="radio" name="operationRadios" value="deleteScheduledMessages" ng-model="selectedOperation")
+                                    | deleteScheduledMessages
+                    
+                    div(class="col col-md-6")
+                        div(class="well" style="background-color:#E7E7E7")
+                            div(ng-if="selectedOperation=='checkUser'" ng-init="resetRequest(); resetResponse(); resetStats();")
+                                p checkUser has no additional information to enter.
+                                
+                            div(ng-if="selectedOperation=='checkReplies'" ng-init="resetRequest(); resetResponse(); resetStats();")
+                                div(class="form-group")
+                                    label(class="col col-sm-6 control-label") maximumReplies:
+                                    div(class="col col-md-6")
+                                        input(type="number" min="1" class="form-control" ng-model="apiRequest.maximumReplies" placeholder="")
+                                        button(ng-click="apiRequest.maximumReplies = null") Clear
+                                        
+                            div(ng-if="selectedOperation=='checkReports'" ng-init="resetRequest(); resetResponse(); resetStats();")
+                                div(class="form-group")
+                                    label(class="col col-sm-6 control-label") maximumReports:
+                                    div(class="col col-md-6")
+                                        input(type="number" min="1" class="form-control" ng-model="apiRequest.maximumReports" placeholder="")
+                                        button(ng-click="apiRequest.maximumReports = null") Clear
+                                
+                            div(ng-if="selectedOperation=='getBlockedNumbers'" ng-init="resetRequest(); resetResponse(); resetStats();")
+                                div(class="form-group")
+                                    label(class="col col-sm-6 control-label") maximumNumbers:
+                                    div(class="col col-md-6")
+                                        input(type="number" min="1" class="form-control" ng-model="apiRequest.maximumNumbers" placeholder="")
+                                        button(ng-click="apiRequest.maximumNumbers = null") Clear
+                                        
+                            div(ng-if="selectedOperation=='blockNumbers'" ng-init="number=''; resetRequest(); apiRequest.numbers=[]; resetResponse(); resetStats();")
+                                strong Numbers to block:
+                                br
+                                button(ng-click="apiRequest.numbers.push(number)" ng-disabled="!number.length") Add
+                                input(type="text" ng-model="number")
+                                pre(ng-repeat="num in apiRequest.numbers" ng-click="apiRequest.numbers.splice($index,1)") {{num}}
+                                
+                            div(ng-if="selectedOperation=='unblockNumbers'" ng-init="number=''; resetRequest(); apiRequest.numbers=[]; resetResponse(); resetStats();")
+                                strong Numbers to unblock:
+                                br
+                                button(ng-click="apiRequest.numbers.push(number)" ng-disabled="!number.length") Add
+                                input(type="text" ng-model="number")
+                                pre(ng-repeat="num in apiRequest.numbers" ng-click="apiRequest.numbers.splice($index,1)") {{num}}
+                                
+                            div(ng-if="selectedOperation=='confirmReplies'" ng-init="number=''; resetRequest(); apiRequest.replies=[]; resetResponse(); resetStats();")
+                                strong ReceiptIds:
+                                br
+                                button(ng-click="apiRequest.replies.push({receiptId:number})" ng-disabled="!number.length") Add
+                                input(type="text" ng-model="number")
+                                pre(ng-repeat="num in apiRequest.replies" ng-click="apiRequest.replies.splice($index,1)") {{num}}
+                                
+                            div(ng-if="selectedOperation=='confirmReports'" ng-init="number=''; resetRequest(); apiRequest.reports=[]; resetResponse(); resetStats();")
+                                strong ReceiptIds:
+                                br
+                                button(ng-click="apiRequest.reports.push({receiptId:number})" ng-disabled="!number.length") Add
+                                input(type="text" ng-model="number")
+                                pre(ng-repeat="num in apiRequest.reports" ng-click="apiRequest.reports.splice($index,1)") {{num}}
+                                
+                            div(ng-if="selectedOperation=='sendMessage'" ng-init="number=''; resetRequest(); apiRequest.numbers=[]; resetResponse(); resetStats();")
+                                strong Numbers:
+                                br
+                                button(ng-click="apiRequest.numbers.push(number); number=''" ng-disabled="!number.length") Add
+                                input(type="text" ng-model="number")
+                                pre(ng-repeat="num in apiRequest.numbers" ng-click="apiRequest.numbers.splice($index,1)") {{num}}
+                                br
+                                strong Message content:
+                                textarea(ng-model="apiRequest.content" style="width:100%")
+                                
+                            div(ng-if="selectedOperation=='deleteScheduledMessages'" ng-init="number=''; resetRequest(); apiRequest.messages=[]; resetResponse(); resetStats();")
+                                strong MessageIds:
+                                br
+                                button(ng-click="apiRequest.messages.push({messageId:number}); number='';" ng-disabled="!number.length") Add
+                                input(type="text" ng-model="number")
+                                pre(ng-repeat="num in apiRequest.messages" ng-click="apiRequest.messages.splice($index,1)") {{num}}
+                
+        div(class="col col-md-6" ng-style="{opacity:loading?0.5:1.0}")
+            div(class="text-center" ng-if="loading")
+                img(src="img/loading-icon.gif" width="100px" style="position:absolute")
+            div(class="well")
+                h2 Comms            
+                button(ng-show="!showDebug" ng-click="showDebug = true" ng-disabled="loading") Show Comms
+                button(ng-show="showDebug" ng-click="showDebug = false" ng-disabled="loading") Hide Comms            
+                div(ng-if="showDebug" class="row")
+                    div(class="col col-md-6") 
+                        h3 Request
+                        div(class="well" style="background-color:#EEE")
+                            h4 URI:
+                            p(class="well" style="background-color:#E7E7E7") {{('/api/' + selectedOperation) || "Uninitialised"}}
+                            h4 Body:
+                            pre(class="well" style="background-color:#E7E7E7") {{(apiRequest | json) || "Uninitialised"}}
+                    div(class="col col-md-6")
+                        h3 Response
+                        div(class="well" style="background-color:#EEE")
+                            h4 Body:
+                            pre(class="well" style="background-color:#E7E7E7") {{(apiResponse | json) || "Uninitialised"}}
+                            
+                 div(class="row")
+                    div(class="col col-md-6") 
+                        h3 Statistics
+                        div(class="well" style="background-color:#EEE")
+                            table(class="table table-bordered")
+                                tr
+                                    td 
+                                        strong Status
+                                    td 
+                                        p(ng-show="!loading") Ready
+                                        p(ng-show="loading") Loading
+                                tr
+                                    td 
+                                        strong Transaction Time
+                                    td(ng-style="{color:stats.currTransTime.runningTime>1500?'red':'black'}") {{stats.currTransTime.runningTime}}ms
+                    
