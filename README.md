@@ -45,7 +45,7 @@ mm.checkUser('userId', 'password', function(resp){
 
 ## Sample REST based Web App:
 
-![alt text](https://raw.githubusercontent.com/messagemedia/messagemedia-nodejs/master/sample/screenshots/screenshot1.png?token=3862198__eyJzY29wZSI6IlJhd0Jsb2I6bWVzc2FnZW1lZGlhL21lc3NhZ2VtZWRpYS1ub2RlanMvbWFzdGVyL3NhbXBsZS9zY3JlZW5zaG90cy9zY3JlZW5zaG90MS5wbmciLCJleHBpcmVzIjoxNDAxMTYxMDYwfQ%3D%3D--afbaffdf2424475713ac64ab93384e60e3282743 "Screenshot 1")
+![alt text](sample/screenshots/screenshot1.png "Screenshot 1")
 
 To run the sample web application type the following command:
 
