@@ -59,7 +59,7 @@ In your web-browser go to [http://localhost:3000/](http://localhost:3000/)
 * **Server** (NodeJS)
 * **Client** (AngularJS)
 
-This sample uses the Express web application framework package, which was created using NodeJS.
+This sample uses the Express web application framework package, on the NodeJS side.
 
 The server (NodeJS) hosts a http server which serves a single-page for a web browser to access and a REST service. The REST service acts as a translation layer allowing two-way communication between MessageMedia's WSDL based SOAP API and this NodeJS's JSON based REST API. I have chosen to use AngularJS on the client (browser) because it is feature-rich and allows easy access to REST resources on the server.
 
