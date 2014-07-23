@@ -19,7 +19,7 @@ block content
                     label(class="col col-sm-3 control-label") password
                     div(class="col col-md-6")
                         input(type="password" class="form-control" ng-model="apiRequest.password" placeholder="password" required)
-                div(class="form-group")
+                div(class="form-group" title="Remember userId and password in this browser/tab session only.")
                     label(class="col col-sm-3 control-label") Remember?
                     div(class="col col-sm-9")
                         input(type="checkbox" ng-model="rememberAuth" ng-change="resetAuth()" ng-disabled="form.$invalid")
@@ -28,7 +28,7 @@ block content
                 
                 h2 Operations
                 div(class="row")
-                    div(class="col col-md-6")
+                    div(class="col col-md-6" id="operationsDiv")
                         div(class="well" style="background-color:#E7E7E7")
                             h3 Checks:
                             div(class="radio")
@@ -184,5 +184,5 @@ block content
                                 tr
                                     td 
                                         strong Transaction Time
-                                    td(ng-style="{color:stats.currTransTime.runningTime>1500?'red':'black'}") {{stats.currTransTime.runningTime}}ms
+                                    td {{stats.currTransTime.runningTime?stats.currTransTime.runningTime:0}}ms
                     

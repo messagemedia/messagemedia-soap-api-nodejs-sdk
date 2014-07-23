@@ -17,3 +17,7 @@ a {
 .css-form input.ng-valid.ng-dirty {
   background-color: #78FA89;
 }
+
+#operationsDiv input[type="radio"]{
+  cursor:pointer
+}
