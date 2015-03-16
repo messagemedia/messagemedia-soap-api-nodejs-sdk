@@ -3,7 +3,7 @@ This library provides a simple interface for sending and receiving messages usin
 
 If you have any issue using this sample code, or would like to report a defect, you could [create a new Issue](https://github.com/messagemedia/messagemedia-nodejs/issues/new) in Github or [Contact us](http://www.messagemedia.com.au/contact-us).
 
-## Installation:
+## Installation
 Clone the repository into your application's *node_modules* directory.
 ```
 $ git clone https://github.com/messagemedia/messagemedia-nodejs.git messagemedia
@@ -22,15 +22,14 @@ Create a **package.json** file in the project's root directory and add **message
 ```
 $ npm install
 ```
-## Usage:
+## Usage
 ### Project directory structure:
 * **/lib** MessageMedia library.
 * **/test** Contains test scripts called from **/test/tests.js**.
 * **/sample** Contains a sample application.
 * **/node_modules** Is created after running **$ npm install**.
 
-#### This project was created using an IDE:
-
+#### This project was created using an IDE
 IDE: Eclipse Standard
 
 Version: Kepler Service Release 2.
@@ -47,8 +46,7 @@ mm.checkUser('userId', 'password', function(resp){
 });
 ```
 
-### Sample REST based Web App:
-
+### Sample REST based Web App
 ![alt text](sample/screenshots/screenshot1.png "Screenshot 1")
 
 To run the sample web application type the following command:
@@ -59,7 +57,7 @@ In **/sample** there is a sample web application that can be used to test/demons
 
 In your web-browser go to [http://localhost:3000/](http://localhost:3000/)
 
-#### Major Parts:
+#### Major Parts
 * **Server** (NodeJS)
 * **Client** (AngularJS)
 
@@ -78,7 +76,7 @@ app.post('/api/checkUser', function(req, res){
 });
 ```
 
-### Unit Tests:
+### Unit Tests
 When attempting to run **/tests.js** for the first time you must...
 
 * Create a **config.json** file in project root directory (use the **config.template.json** file as a template)
@@ -103,7 +101,6 @@ When attempting to run **/tests.js** for the first time you must...
 Please note: The unit tests require an active MessageMedia account in order for them to function.
 
 ## Contributing
-
 We welcome contributions from our users. Contributing is easy:
 
   1.  Fork this repo
