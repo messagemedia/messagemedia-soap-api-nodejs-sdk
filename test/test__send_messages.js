@@ -6,7 +6,7 @@ var checkError = require('../lib/common/checkError.js');
  * Check types
  */
 exports.t1 = function(test, callback) {
-  operation.sendMessage(config.userId, config.password, config.testMsg, [ config.calleeNumber ], function(result) {
+  operation.sendMessage(config.userId, config.password, config.testMsg, [ config.calleeNumber ], true, null, null, function(result) {
     test.ok(result.faultstring === undefined, result.faultstring);
     test.equals(typeof result.sent, 'number', "SendMessages response 'sent' is not a Number");
     test.equals(typeof result.scheduled, 'number', "SendMessages response 'scheduled' is not a Number");
@@ -51,7 +51,7 @@ exports.t1 = function(test, callback) {
  * code 'recipientBlocked'
  */
 exports.t2 = function(test, callback) {
-  operation.sendMessage(config.userId, config.password, config.testMsg, [ config.calleeNumber ], function(result) {
+  operation.sendMessage(config.userId, config.password, config.testMsg, [ config.calleeNumber ], true, null, null, function(result) {
     test.ok(result.faultstring === undefined, result.faultstring);
 
     test.equals(result.sent, 0, "Expected 0 messages to be sent but " + result.sent + " were sent.");
@@ -68,7 +68,7 @@ exports.t2 = function(test, callback) {
  * code 'recipientBlocked'
  */
 exports.t3 = function(test, callback) {
-  operation.sendMessage(config.userId, config.password, config.testMsg, [ config.calleeNumber ], function(result) {
+  operation.sendMessage(config.userId, config.password, config.testMsg, [ config.calleeNumber ], true, null, null, function(result) {
     test.ok(result.faultstring === undefined, result.faultstring);
 
     test.equals(result.sent, 1, "Expected 0 messages to be sent but " + result.sent + " were sent.");

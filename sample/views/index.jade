@@ -141,7 +141,18 @@ block content
                                 br
                                 strong Message content:
                                 textarea(ng-model="apiRequest.content" style="width:100%")
-                                
+                                br
+                                strong Scheduled:
+                                br
+                                input(type="text" ng-model="apiRequest.scheduledTime" style="width:200px")
+                                br
+                                strong Message Id:
+                                br
+                                input(type="text" ng-model="apiRequest.messageId" style="width:200px")
+                                br
+                                strong Delivery report:
+                                input(type="checkbox" ng-model="apiRequest.deliveryReport" style="width:20px")
+
                             div(ng-if="selectedOperation=='deleteScheduledMessages'" ng-init="number=''; resetRequest(); apiRequest.messages=[]; resetResponse(); resetStats();")
                                 strong MessageIds:
                                 br

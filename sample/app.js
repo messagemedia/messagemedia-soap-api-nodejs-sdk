@@ -80,9 +80,11 @@ app.post('/api/confirmReports', function(req, res){
 });
 
 app.post('/api/sendMessage', function(req, res){
-  messagemedia.sendMessage(req.body.userId, req.body.password, req.body.content, req.body.numbers, function(result){
-    res.send(result);
-  });
+  messagemedia.sendMessage(req.body.userId, req.body.password, req.body.content, req.body.numbers, req.body.deliveryReport, req.body.scheduledTime,
+      req.body.messageId, function(result){
+        res.send(result);
+      }
+  );
 });
 
 app.post('/api/deleteScheduledMessages', function(req, res){
